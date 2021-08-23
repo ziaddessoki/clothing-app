@@ -1,11 +1,16 @@
 import React from 'react';
-import { Homepage } from './pages/homepage/Homepage.component';
-import ShopPage from './pages/shop/shop.component.jsx'
-import Header from './components/header/header.component.jsx'
-
-
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+
+import Header from './components/header/header.component.jsx'
+import { Homepage } from './pages/homepage/Homepage.component';
+import ShopPage from './pages/shop/shop.component.jsx'
+import SignInAndSignUp from './pages/auth/signInAndSignUp.component.jsx'
+
+
+
+
+
 
 function App() {
   return (
@@ -14,6 +19,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Homepage} />
         <Route path='/shop' component={ShopPage} />
+        <Route path='/auth' component={SignInAndSignUp} />
       </Switch>
     </div>
   );
