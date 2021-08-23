@@ -17,7 +17,6 @@ export default class SignIn extends Component {
     }
 
     handleChange = e => {
-        console.log(e.target)
         const { value, name } = e.target
 
         this.setState({ [name]: value })
