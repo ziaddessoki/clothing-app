@@ -6,7 +6,7 @@ import Header from './components/header/header.component.jsx'
 import { Homepage } from './pages/homepage/Homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx'
 import SignInAndSignUp from './pages/auth/signInAndSignUp.component.jsx'
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 
 
 
@@ -23,10 +23,24 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDoc(userAuth)
 
-      console.log(user);
+        userRef.onSnapshot(snapShot => {
+          console.log("snapShot:", snapShot)// show if user exist and generated ID
+          console.log("data:", snapShot.data()) //shows user data from DataBase
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          })
+        })
+      } else {
+        this.setState({ currentUser: null })
+      }
+
     });
   }
 
