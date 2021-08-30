@@ -28,17 +28,18 @@ class App extends Component {
         const userRef = await createUserProfileDoc(userAuth)
 
         userRef.onSnapshot(snapShot => {
-          console.log("snapShot:", snapShot)// show if user exist and generated ID
-          console.log("data:", snapShot.data()) //shows user data from DataBase
+          // console.log("snapShot:", snapShot)// show if user exist and generated ID
+          // console.log("data:", snapShot.data()) //shows user data from DataBase
           this.setState({
             currentUser: {
               id: snapShot.id,
               ...snapShot.data()
             }
-          })
+          }, () => console.log(this.state))
         })
+
       } else {
-        this.setState({ currentUser: null })
+        this.setState({ currentUser: userAuth })
       }
 
     });
