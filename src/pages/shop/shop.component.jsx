@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SHOP_DATA } from './shopData'
+import SHOP_DATA from './shopData'
 
 import PreviewCollection from '../../components/preview-collection/preview-collection.component'
 
