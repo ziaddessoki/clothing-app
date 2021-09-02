@@ -9,7 +9,7 @@ import CartIcon from '../cartIcon/cartIcon.component'
 import CartDropDown from '../cartDropDown/cartDropDown.component'
 
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
     return (
         <div className="header">
             <Link className='logo-container' to='/'>
@@ -26,13 +26,15 @@ const Header = ({ currentUser }) => {
                 }
                 <CartIcon className='option' />
             </div>
-            <CartDropDown />
+            {hidden && <CartDropDown />}
+
         </div>
     )
 }
-
-const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+//destructing State { user: { currentUser }, cart: { hidden } 
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+    currentUser,
+    hidden
 })
 
 
