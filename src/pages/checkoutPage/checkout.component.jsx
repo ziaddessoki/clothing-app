@@ -39,4 +39,6 @@ const mapStateToProps = createStructuredSelector({
     total: selectCartTotal
 })
 
+
+
 export default connect(mapStateToProps)(Checkout)
