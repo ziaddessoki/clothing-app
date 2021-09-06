@@ -8,6 +8,10 @@ import { auth } from '../../firebase/firebase.utils'
 import CartIcon from '../cartIcon/cartIcon.component'
 import CartDropDown from '../cartDropDown/cartDropDown.component'
 
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
+import { selectCartHidden } from '../../redux/cart/cart.selectors'
+
 
 const Header = ({ currentUser, hidden }) => {
     return (
@@ -32,9 +36,10 @@ const Header = ({ currentUser, hidden }) => {
     )
 }
 //destructing State { user: { currentUser }, cart: { hidden } 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-    currentUser,
-    hidden
+//using createStructureSelector instead of keep passing the state as an argument for each re-selector function
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 })
 
 

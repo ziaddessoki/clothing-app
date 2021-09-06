@@ -10,7 +10,8 @@ import SignInAndSignUp from './pages/auth/signInAndSignUp.component.jsx'
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions'
 
-
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selectors'
 
 class App extends Component {
 
@@ -60,9 +61,9 @@ class App extends Component {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+//using createStructureSelector instead of keep passing the state as an argument for each re-selector function
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
