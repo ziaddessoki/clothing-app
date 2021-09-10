@@ -9,9 +9,9 @@ import rootReducer from './root-reducer'
 
 const middlewares = [logger];
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
 
 //using persist to cache data, same as using localStorage
-const persister = persistStore(store)
+export const persistor = persistStore(store)
 
-export default { store, persister }
+// export default { store, persistor }

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { persistReducer } from 'redux-persist'
-//to access localStorage 
-import { storage } from 'redux-persist/lib/storage'
+//to access localStorage(part of persist config)
+import storage from 'redux-persist/lib/storage'
 
 import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
@@ -24,4 +24,4 @@ const rootReducer = combineReducers({
     cart: cartReducer
 })
 
-export default persistConfig(persistReducer, rootReducer)
+export default persistReducer(persistConfig, rootReducer)
