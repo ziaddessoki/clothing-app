@@ -1,9 +1,10 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-const stripeButton = ({ price }) => {
+const StripeButton = ({ price }) => {
   const priceForStripe = price * 100;
-  const publishableKey = process.env.PUBLISHABLEKEY;
+  const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
+  console.log(process.env);
 
   const onToken = (token) => {
     console.log(token);
@@ -14,6 +15,7 @@ const stripeButton = ({ price }) => {
       <StripeCheckout
         label="Pay Now"
         name="Clothing App"
+        ComponentClass="StripeCheckout"
         billingAddress
         shippingAddress
         image="https://svgshare.com/i/CUz.svg"
@@ -27,4 +29,6 @@ const stripeButton = ({ price }) => {
   );
 };
 
-export default stripeButton;
+//4242 4242 4242 4242 01/20 s:123
+
+export default StripeButton;
