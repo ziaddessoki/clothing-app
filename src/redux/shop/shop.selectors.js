@@ -13,12 +13,12 @@ export const selectCollection = createSelector(
 
 export const selectCollectionForPreview = createSelector(
   [selectCollection],
-  (collection) => Object.keys(collection).map((key) => collection[key])
+  (collection) =>
+    collection ? Object.keys(collection).map((key) => collection[key]) : []
 );
 
 export const selectCollectionUrl = memoize((collectionUrlParam) =>
-  createSelector(
-    [selectCollection],
-    (collections) => collections[collectionUrlParam]
+  createSelector([selectCollection], (collections) =>
+    collections ? collections[collectionUrlParam] : null
   )
 );
