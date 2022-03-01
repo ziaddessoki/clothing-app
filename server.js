@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-if (process.env.NODE_ENV !== "production") require("dontenv").config();
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
